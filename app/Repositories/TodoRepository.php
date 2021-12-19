@@ -21,7 +21,12 @@ class TodoRepository
 
     public function find($id)
     {
-        return Todo::where('user_id', $this->user->id)->find($id);
+        return auth()->user()->todos()->find($id);
+    }
+
+    public function findWithItems($id)
+    {
+        return auth()->user()->todos()->with('items')->find($id);
     }
 
     public function update($id, array $data)
