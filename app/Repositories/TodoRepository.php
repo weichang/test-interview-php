@@ -26,8 +26,7 @@ class TodoRepository
 
     public function update($id, array $data)
     {
-        $todo = Todo::where('user_id', $this->user->id)->find($id);
-        return $todo ? $todo->update($data) : false;
+        return auth()->user()->todos()->where('id', $id)->update($data);
     }
 
     public function create(array $data)

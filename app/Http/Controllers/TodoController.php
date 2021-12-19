@@ -22,7 +22,7 @@ class TodoController extends Controller
     {
         try {
             $result = $this->todoRepo->index();
-            return response()->json(['data'=>$result]);
+            return response()->json(['data' => $result]);
         } catch (\Exception $e) {
             return response()->json(['errorMsg' => $e->getMessage()]);
         }
@@ -34,6 +34,7 @@ class TodoController extends Controller
             $input = $request->input();
             $input['attachment'] = json_encode($input);
             $result = $this->todoRepo->create($input);
+            $result = $this->todoRepo->find($result->id);
             return response()->json(['data' => $result]);
         } catch (\Exception $e) {
             \Log::error('error', ['msg' => $e->getMessage()]);
@@ -56,7 +57,8 @@ class TodoController extends Controller
     {
         try {
             $data = $request->input();
-            $result = $this->todoRepo->update($id, $data);
+            $this->todoRepo->update($id, $data);
+            $result = $this->todoRepo->find($id);
             return response()->json(['data' => $result]);
         } catch (\Exception $e) {
             return response()->json(['errorMsg' => $e->getMessage()]);
