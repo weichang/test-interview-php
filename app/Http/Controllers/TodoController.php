@@ -32,7 +32,7 @@ class TodoController extends Controller
     {
         try {
             $input = $request->input();
-            $input['attachment'] = json_encode($input);
+            //$input['attachment'] = json_encode($input);
             $result = $this->todoRepo->create($input);
             $result = $this->todoRepo->find($result->id);
             return response()->json(['data' => $result]);

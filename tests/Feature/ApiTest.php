@@ -15,14 +15,13 @@ $createUserWithData = static function (int $userCount = 1, bool $createRelationD
                 ->has(TodoItem::factory()->count(value(static fn () => random_int(5, 15))), 'items')
         );
     }
-
     $users = $users->create();
 
     return ($userCount === 1) ? $users->first() : $users;
 };
 
 test('Login successful', function () use ($createUserWithData) {
-    $user = $createUserWithData();
+    $user = $createUserWithData(createRelationData: true);
 
     $response = $this->post('/api/auth/login', [
         'email' => $user->email,
@@ -38,7 +37,7 @@ test('Login successful', function () use ($createUserWithData) {
 
 
 test('can refresh JWT token', function () use ($createUserWithData) {
-    $user = $createUserWithData();
+    $user = $createUserWithData(createRelationData: true);
     auth()->guard()->login($user);
     $this->assertAuthenticated();
     $this->actingAs($user);
@@ -51,7 +50,7 @@ test('can refresh JWT token', function () use ($createUserWithData) {
 });
 
 test('can get token status', function () use ($createUserWithData) {
-    $user = $createUserWithData();
+    $user = $createUserWithData(createRelationData: true);
     auth()->guard()->login($user);
     $this->assertAuthenticated();
     $this->actingAs($user);
@@ -71,7 +70,7 @@ test('can get token status', function () use ($createUserWithData) {
 });
 
 test('can get user name and email', function () use ($createUserWithData) {
-    $user = $createUserWithData();
+    $user = $createUserWithData(createRelationData: true);
     auth()->guard()->login($user);
     $this->assertAuthenticated();
 
@@ -86,7 +85,7 @@ test('can get user name and email', function () use ($createUserWithData) {
 });
 
 test('can get todo list', function () use ($createUserWithData) {
-    $user = $createUserWithData();
+    $user = $createUserWithData(createRelationData: true);
     auth()->guard()->login($user);
     $this->assertAuthenticated();
 
