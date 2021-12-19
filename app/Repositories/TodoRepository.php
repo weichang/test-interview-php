@@ -16,7 +16,7 @@ class TodoRepository
 
     public function index()
     {
-        return Todo::where('user_id', $this->user->id)->orderBy('created_at', 'DESC')->get();
+        return Todo::with('items')->orderBy('created_at', 'DESC')->get();
     }
 
     public function find($id)

@@ -22,8 +22,7 @@ class TodoController extends Controller
     {
         try {
             $result = $this->todoRepo->index();
-            // $result['items']= '';
-            return response()->json(['data' => $result]);
+            return response()->json(['data'=>$result]);
         } catch (\Exception $e) {
             return response()->json(['errorMsg' => $e->getMessage()]);
         }
