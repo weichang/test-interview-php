@@ -25,7 +25,7 @@ Route::namespace('Todo')
 
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
         Route::put('/{todoId}/item/{itemId}', 'Item\CreateOrUpdateItem');
-//        Route::delete('/{todoId}/item/{itemId}', 'REPLACE_WITH_YOUR_CLASS');
+        Route::delete('/{todoId}/item/{itemId}', [\App\Http\Controllers\TodoItemController::class, 'delete']);
     });
 
 Route::namespace('Auth')
