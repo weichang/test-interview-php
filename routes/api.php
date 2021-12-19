@@ -39,7 +39,7 @@ Route::namespace('Auth')
     ->middleware(['api', 'auth:api'])
     ->prefix('auth')
     ->group(function () {
-//        Route::post('refresh', 'REPLACE_WITH_YOUR_CLASS');
+        Route::post('refresh', [\App\Http\Controllers\AuthController::class, 'refresh']);
         Route::get('me', [\App\Http\Controllers\AuthController::class, 'me']);
-//        Route::get('token', 'REPLACE_WITH_YOUR_CLASS');
+       //  Route::get('token', [\App\Http\Controllers\AuthController::class, 'token']);
     });

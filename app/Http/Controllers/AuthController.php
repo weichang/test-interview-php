@@ -12,4 +12,15 @@ class AuthController extends Controller
         $re['user'] = auth()->user();
         return response()->json($re);
     }
+
+    public function refresh()
+    {
+        $token = auth()->refresh();
+        return response()->json(['access_token' => $token]);
+    }
+
+    // public function token()
+    // {
+    //
+    // }
 }
