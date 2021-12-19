@@ -46,7 +46,7 @@ class TodoController extends Controller
     {
         try {
             $result = $this->todoRepo->findWithItems($id);
-            return response()->json(['data' => $result]);
+            return response()->json($result);
         } catch (\Exception $e) {
             return response()->json(['errorMsg' => $e->getMessage()]);
         }
