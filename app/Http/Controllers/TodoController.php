@@ -71,7 +71,13 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $result = $this->todoRepo->find($id);
+            // $result['items']= '';
+            return response()->json(['data' => $result]);
+        } catch (\Exception $e) {
+            return response()->json(['errorMsg' => $e->getMessage()]);
+        }
     }
 
     /**

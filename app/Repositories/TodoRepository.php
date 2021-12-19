@@ -7,10 +7,21 @@ use App\Models\TodoItem;
 
 class TodoRepository
 {
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
     public function index()
     {
-         $user = auth()->user();
-         return Todo::where('user_id', $user->id)->orderBy('created_at','DESC')->get();
+        return Todo::where('user_id', $this->user->id)->orderBy('created_at', 'DESC')->get();
+    }
+
+    public function find($id)
+    {
+        return Todo::where('user_id', $this->user->id)->find($id);
     }
 
     public function create(array $data)

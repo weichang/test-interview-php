@@ -18,7 +18,7 @@ Route::namespace('Todo')
     ->prefix('todos')
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\TodoController::class, 'index']);
-        //Route::get('/{todoId}', [\App\Http\Controllers\TodoController::class, 'show']);
+        Route::get('/{todoId}', [\App\Http\Controllers\TodoController::class, 'show']);
         Route::post('/', [\App\Http\Controllers\TodoController::class, 'store']);
         //Route::put('/{todoId}', [\App\Http\Controllers\TodoController::class, 'update']);
         //Route::delete('/{todoId}', [\App\Http\Controllers\TodoController::class, 'destroy']);
