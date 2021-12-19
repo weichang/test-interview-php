@@ -17,11 +17,11 @@ Route::namespace('Todo')
     ->middleware(['api', 'auth:api'])
     ->prefix('todos')
     ->group(function () {
-//        Route::get('/', 'REPLACE_WITH_YOUR_CLASS');
-//        Route::get('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
-//        Route::post('/', 'REPLACE_WITH_YOUR_CLASS');
-//        Route::put('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
-//        Route::delete('/{todoId}', 'REPLACE_WITH_YOUR_CLASS');
+        //Route::get('/', [\App\Http\Controllers\TodoController::class, 'index']);
+        //Route::get('/{todoId}', [\App\Http\Controllers\TodoController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\TodoController::class, 'store']);
+        //Route::put('/{todoId}', [\App\Http\Controllers\TodoController::class, 'update']);
+        //Route::delete('/{todoId}', [\App\Http\Controllers\TodoController::class, 'destroy']);
 
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
         Route::put('/{todoId}/item/{itemId}', 'Item\CreateOrUpdateItem');
