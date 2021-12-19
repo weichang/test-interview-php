@@ -41,5 +41,5 @@ Route::namespace('Auth')
     ->group(function () {
         Route::post('refresh', [\App\Http\Controllers\AuthController::class, 'refresh']);
         Route::get('me', [\App\Http\Controllers\AuthController::class, 'me']);
-       //  Route::get('token', [\App\Http\Controllers\AuthController::class, 'token']);
+        Route::get('token', [\App\Http\Controllers\AuthController::class, 'token']);
     });
