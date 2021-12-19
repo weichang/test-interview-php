@@ -25,7 +25,13 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $result = $this->todoRepo->index();
+           // $result['items']= '';
+            return response()->json(['data' => $result]);
+        } catch (\Exception $e) {
+            return response()->json(['errorMsg' => $e->getMessage()]);
+        }
     }
 
     /**
