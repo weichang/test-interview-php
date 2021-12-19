@@ -21,7 +21,7 @@ Route::namespace('Todo')
         Route::get('/{todoId}', [\App\Http\Controllers\TodoController::class, 'show']);
         Route::post('/', [\App\Http\Controllers\TodoController::class, 'store']);
         Route::put('/{todoId}', [\App\Http\Controllers\TodoController::class, 'update']);
-        //Route::delete('/{todoId}', [\App\Http\Controllers\TodoController::class, 'destroy']);
+        Route::delete('/{todoId}', [\App\Http\Controllers\TodoController::class, 'destroy']);
 
         Route::post('/{todoId}/item', 'Item\CreateOrUpdateItem');
         Route::put('/{todoId}/item/{itemId}', 'Item\CreateOrUpdateItem');

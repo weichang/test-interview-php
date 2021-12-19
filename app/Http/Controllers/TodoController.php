@@ -57,7 +57,7 @@ class TodoController extends Controller
     {
         try {
             $data = $request->input();
-            $result =$this->todoRepo->update($id, $data);
+            $result = $this->todoRepo->update($id, $data);
             return response()->json(['data' => $result]);
         } catch (\Exception $e) {
             return response()->json(['errorMsg' => $e->getMessage()]);
@@ -66,6 +66,13 @@ class TodoController extends Controller
 
     public function destroy($id)
     {
-
+        try {
+            $user = auth()->user();
+            Todo::where('user_id', '=', $user->id)->where('id', '=', $id)->firstOrFail()->delete();
+            TodoItem::where('todo_id', '=', $id)->delete();
+            return response()->json(['statusCode' => \Symfony\Component\HttpFoundation\Response::HTTP_OK]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'msg' => $e->getMessage()]);
+        }
     }
 }
