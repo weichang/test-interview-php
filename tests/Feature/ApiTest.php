@@ -22,7 +22,7 @@ $createUserWithData = static function (int $userCount = 1, bool $createRelationD
 };
 
 test('Login successful', function () use ($createUserWithData) {
-    $user = $createUserWithData(createRelationData: true);
+    $user = $createUserWithData();
 
     $response = $this->post('/api/auth/login', [
         'email' => $user->email,
@@ -38,7 +38,7 @@ test('Login successful', function () use ($createUserWithData) {
 
 
 test('can refresh JWT token', function () use ($createUserWithData) {
-    $user = $createUserWithData(createRelationData: true);
+    $user = $createUserWithData();
     auth()->guard()->login($user);
     $this->assertAuthenticated();
     $this->actingAs($user);
@@ -71,7 +71,7 @@ test('can get token status', function () use ($createUserWithData) {
 });
 
 test('can get user name and email', function () use ($createUserWithData) {
-    $user = $createUserWithData(createRelationData: true);
+    $user = $createUserWithData();
     auth()->guard()->login($user);
     $this->assertAuthenticated();
 
