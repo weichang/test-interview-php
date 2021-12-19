@@ -10,7 +10,7 @@ class TodoRepository
     public function index()
     {
          $user = auth()->user();
-         return Todo::where('user_id', $user->id)->get();
+         return Todo::where('user_id', $user->id)->orderBy('created_at','DESC')->get();
     }
 
     public function create(array $data)
